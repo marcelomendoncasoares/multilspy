@@ -222,6 +222,8 @@ class PlatformUtils:
                 if libc != 'glibc':
                     platform_id += "-" + libc
             return PlatformId(platform_id)
+        if system == "Windows" and bitness == "64bit":
+            return PlatformId.WIN_arm64 if machine.lower() == "arm64" else PlatformId.WIN_x64
         else:
             raise MultilspyException("Unknown platform: " + system + " " + machine + " " + bitness)
 
